@@ -107,7 +107,7 @@ except Exception as e:
 # Try to load the NCES data with our robust method
 try:
     print("\nAttempting to read ELSI_NCES_GA_school_data.csv...")
-    nces_data = read_csv_robust('data/ELSI_NCES_GA_school_data.csv')
+    nces_data = read_csv_robust('data/raw/ELSI_NCES_GA_school_data.csv')
     print(f"Successfully loaded NCES data with {len(nces_data)} rows and {len(nces_data.columns)} columns")
     
     # Display the first few columns to help identify the zip code column
@@ -189,7 +189,7 @@ try:
         print(missing_zips)
     
     # Save the filtered data
-    filtered_schools.to_csv('data/filtered_nces_schools.csv', index=False)
+    filtered_schools.to_csv('data/aggregated/filtered_nces_schools.csv', index=False)
     print("\nFiltered schools data saved to 'filtered_nces_schools.csv'")
     
     # Print schools per zip code

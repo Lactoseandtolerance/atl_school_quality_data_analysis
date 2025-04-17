@@ -11,7 +11,7 @@ This repository contains tools for processing, integrating, and evaluating schoo
 
 ## Data Sources
 
-The analysis integrates data from several educational sources:
+The analysis integrates data from several educational sources [data/raw/...]:
 
 | File | Description | Metrics |
 |------|-------------|---------|
@@ -29,24 +29,24 @@ The analysis integrates data from several educational sources:
 - Loads target ZIP codes from `zipcodes.csv`
 - Uses intelligent CSV parsing (auto-detection of delimiters and encodings)
 - Filters schools to include only those in target ZIP codes
-- Outputs `filtered_nces_schools.csv`
+- Outputs `data/cleaned/filtered_nces_schools.csv`
 
-### 2. Data Integration (`proper-merge-school-data.py`)
+### 2. Data Integration (`merge-school-metrics.py`)
 - Creates standardized school identifiers (clean name + ZIP)
 - Applies fuzzy matching with 85% similarity threshold
 - Uses NCES data as foundation dataset
 - Properly merges data from multiple sources using school IDs
 - Handles multi-valued metrics with column generation
 - Prevents column conflicts with source prefixes
-- Outputs `properly_merged_school_data.csv` (663 schools × 144 metrics)
+- Outputs `data/aggregated/merged_school_data.csv` (663 schools × 144 metrics)
 
-### 3. Quality Evaluation (`school-quality-evaluator.py`)
+### 3. Quality Evaluation (`school_quality_metrics_evaluator.py`)
 - Analyzes integrated dataset for quality indicators
 - Normalizes metrics to allow fair comparison
 - Calculates weighted scores across key dimensions
 - Assigns distribution-based letter grades (A-F)
 - Identifies school-specific strengths and improvement areas
-- Outputs `school_quality_ratings.csv`
+- Outputs `data/aggregated/school_quality_ratings.csv`
 
 ## Quality Metrics Framework
 

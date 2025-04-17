@@ -7,12 +7,12 @@ print("Starting Improved School Data Merging Process...")
 
 # List of specific files to process
 SPECIFIC_FILES = [
-    "data/AP_2023-24_2025-01-15_15_03_20.csv",
-    "data/ELSI_NCES_GA_school_data.csv",
-    "data/EOC_2023-24__GA_TST_AGGR_2025-01-14_16_19_30.csv",
-    "data/EOG_2023-24__GA_TST_AGGR_2025-01-14_16_19_30.csv",
-    "data/HS_Completer_Credentials_2023-24_2025-01-14_16_45_56.csv",
-    "data/School_FESR_FY24_for_Display.csv"
+    "data/raw/AP_2023-24_2025-01-15_15_03_20.csv",
+    "data/raw/ELSI_NCES_GA_school_data.csv",
+    "data/raw/EOC_2023-24__GA_TST_AGGR_2025-01-14_16_19_30.csv",
+    "data/raw/EOG_2023-24__GA_TST_AGGR_2025-01-14_16_19_30.csv",
+    "data/raw/HS_Completer_Credentials_2023-24_2025-01-14_16_45_56.csv",
+    "data/raw/School_FESR_FY24_for_Display.csv"
 ]
 
 # Hard-coded column mappings for each file
@@ -104,7 +104,7 @@ def find_best_match(name, name_list, threshold=85):
 
 # Load the filtered NCES schools data which has the schools we want to keep
 try:
-    filtered_file = "data/filtered_nces_schools.csv"
+    filtered_file = "data/cleaned/filtered_nces_schools.csv"
     print(f"Loading filtered schools data from {filtered_file}...")
     
     filtered_schools = pd.read_csv(filtered_file)
@@ -182,7 +182,7 @@ for file_path in SPECIFIC_FILES:
         print(f"\nProcessing {file_name}...")
         
         # Skip the NCES data file since we already used it as our base
-        if file_name == "ELSI_NCES_GA_school_data.csv":
+        if file_name == "data/raw/ELSI_NCES_GA_school_data.csv":
             print(f"Skipping {file_name} as it's already used as the base dataset")
             continue
         
@@ -363,7 +363,7 @@ if 'clean_name' in merged_data.columns:
 
 # Save the properly merged dataset
 try:
-    output_filename = "data/properly_merged_school_data.csv"
+    output_filename = "data/aggregated/merged_school_data.csv"
     merged_data.to_csv(output_filename, index=False)
     print(f"\nSaved properly merged dataset with {len(merged_data)} rows and {len(merged_data.columns)} columns to {output_filename}")
 except Exception as e:

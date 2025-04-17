@@ -282,7 +282,7 @@ def generate_quality_report(df, school_name_col, zip_col, overall_scores, letter
 
 def main():
     # Load the merged school data
-    data_file = "data/properly_merged_school_data.csv"
+    data_file = "data/aggregated/merged_school_data.csv"
     df = load_data(data_file)
     
     # Identify key columns
@@ -299,7 +299,7 @@ def main():
                                             overall_scores, letter_grades, df_scores)
     
     # Save the report
-    output_file = "data/school_quality_ratings.csv"
+    output_file = "data/aggregated/school_quality_ratings.csv"
     quality_report.to_csv(output_file, index=False)
     print(f"Saved quality ratings for {len(quality_report)} schools to {output_file}")
     
